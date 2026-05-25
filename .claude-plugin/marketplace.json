@@ -8,7 +8,11 @@
     {
       "name": "context-extractor",
       "description": "Extracts As-Is business context (processes, roles, systems, rules, problems, decisions, terms, open questions) from meeting transcripts, asks one batched clarification round, and routes results into configurable functional folders. Includes a glossary steward for canonical-name management with case-insensitive duplicate detection.",
-      "source": "./plugins/context-extractor",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/SecondBrainProd/claude-context-extractor.git",
+        "path": "plugins/context-extractor"
+      },
       "version": "0.1.6"
     }
   ]
