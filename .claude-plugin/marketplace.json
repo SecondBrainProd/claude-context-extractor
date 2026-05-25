@@ -1,0 +1,15 @@
+{
+  "name": "claude-context-extractor",
+  "description": "Claude Code plugin for extracting As-Is business context from meeting transcripts and routing it to functional folders.",
+  "owner": {
+    "name": "Second Brain Production"
+  },
+  "plugins": [
+    {
+      "name": "context-extractor",
+      "description": "Extracts As-Is business context (processes, roles, systems, rules, problems, decisions, terms, open questions) from meeting transcripts, asks one batched clarification round, and routes results into configurable functional folders. Includes a glossary steward for canonical-name management with case-insensitive duplicate detection.",
+      "source": "./plugins/context-extractor",
+      "version": "0.1.6"
+    }
+  ]
+}
