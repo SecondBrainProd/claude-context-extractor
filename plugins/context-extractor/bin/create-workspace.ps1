@@ -2,11 +2,17 @@
 <#
 .SYNOPSIS
     Creates the context-extractor workspace directory tree.
+.DESCRIPTION
+    Recommended: point -BasePath INSIDE your Obsidian vault (e.g. a "Контекст"
+    subfolder). Then the accumulated functional folders are part of your knowledge
+    base, the agent sees the whole history for Scenario A (updating existing files),
+    and moving results from _review/ is a copy within the same vault.
 .PARAMETER BasePath
     Target path for the workspace. Default: ~/work/context-extractor
+    Recommended for Obsidian users: "<your-vault>/Контекст"
 .EXAMPLE
     .\bin\create-workspace.ps1
-    .\bin\create-workspace.ps1 -BasePath "D:\work\context-extractor"
+    .\bin\create-workspace.ps1 -BasePath "C:\Users\<you>\ObsidianVault\Контекст"
 #>
 param(
     [string]$BasePath = (Join-Path $env:USERPROFILE "work\context-extractor")
