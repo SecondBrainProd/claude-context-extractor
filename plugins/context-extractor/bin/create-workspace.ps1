@@ -56,22 +56,25 @@ New-Item -ItemType Directory -Force -Path $claudeDir | Out-Null
 
 $settingsPath = Join-Path $claudeDir "settings.json"
 if (-not (Test-Path $settingsPath)) {
+    # Project-relative permission paths (leading "/" = relative to the folder you
+    # launch `claude` from). This sidesteps Windows/Cyrillic absolute-path
+    # normalization AND works whether the workspace lives inside an Obsidian vault
+    # or standalone. NO blanket deny: in Claude Code, deny > ask > allow (first
+    # match wins), so a vault-wide deny would also block _review writes. Protection
+    # is provided by defaultMode "plan" + a narrow allow-list: any write outside
+    # _review/glossary.md falls back to a permission prompt — nothing is written
+    # silently, and the rest of your vault is never touched without your OK.
     $settingsContent = @'
 {
-  "_setup_notes": "ATTENTION: Replace the Obsidian path in deny rules with Sergey's actual vault path during installation.",
   "permissions": {
     "defaultMode": "plan",
     "allow": [
-      "Read(~/work/context-extractor/**)",
-      "Write(~/work/context-extractor/_review/**)",
-      "Edit(~/work/context-extractor/glossary.md)",
-      "Edit(~/work/context-extractor/_review/**)",
-      "Glob(~/work/context-extractor/**)",
-      "Grep(~/work/context-extractor/**)"
-    ],
-    "deny": [
-      "Write(~/Documents/Obsidian/**)",
-      "Edit(~/Documents/Obsidian/**)"
+      "Read(/**)",
+      "Glob(/**)",
+      "Grep(/**)",
+      "Write(/_review/**)",
+      "Edit(/_review/**)",
+      "Edit(/glossary.md)"
     ]
   }
 }
