@@ -1,6 +1,6 @@
 {
   "name": "context-extractor",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Extracts As-Is business context from meeting transcripts and routes to functional folders",
   "author": {
     "name": "Second Brain Production"
