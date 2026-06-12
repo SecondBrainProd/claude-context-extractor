@@ -64,6 +64,10 @@ if (-not (Test-Path $settingsPath)) {
     # is provided by defaultMode "plan" + a narrow allow-list: any write outside
     # _review/glossary.md falls back to a permission prompt — nothing is written
     # silently, and the rest of your vault is never touched without your OK.
+    # Write/Edit cover the whole workspace (not just _review): the apply-review
+    # command moves vetted notes from _review/ into the functional folders.
+    # Safety still holds: plan mode + explicit plans gate every write, and the
+    # rest of the vault (outside this folder) is untouched without a prompt.
     $settingsContent = @'
 {
   "permissions": {
@@ -72,9 +76,8 @@ if (-not (Test-Path $settingsPath)) {
       "Read(/**)",
       "Glob(/**)",
       "Grep(/**)",
-      "Write(/_review/**)",
-      "Edit(/_review/**)",
-      "Edit(/glossary.md)"
+      "Write(/**)",
+      "Edit(/**)"
     ]
   }
 }
