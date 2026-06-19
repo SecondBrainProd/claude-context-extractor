@@ -68,6 +68,12 @@ if (-not (Test-Path $settingsPath)) {
     # command moves vetted notes from _review/ into the functional folders.
     # Safety still holds: plan mode + explicit plans gate every write, and the
     # rest of the vault (outside this folder) is untouched without a prompt.
+    # DELETION note: rm/mv go through Bash, NOT Write/Edit, so this allow-list does
+    # not govern them. _inbox source files are protected by three barriers instead:
+    # (1) the context-extractor agent ships WITHOUT Bash in its tools (cannot delete),
+    # (2) defaultMode "plan" gates every Bash call, (3) an explicit prompt-level ban
+    # on ever deleting/moving _inbox. No hard rm-deny is set: a blanket deny would
+    # break apply-review's own _review/ cleanup, and a path-narrow deny is unreliable.
     $settingsContent = @'
 {
   "permissions": {
