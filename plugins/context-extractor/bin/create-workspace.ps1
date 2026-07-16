@@ -64,8 +64,12 @@ if (-not (Test-Path $settingsPath)) {
     # is provided by defaultMode "plan" + a narrow allow-list: any write outside
     # _review/glossary.md falls back to a permission prompt — nothing is written
     # silently, and the rest of your vault is never touched without your OK.
-    # Write/Edit cover the whole workspace (not just _review): the apply-review
-    # command moves vetted notes from _review/ into the functional folders.
+    # Only TWO rules are needed: Read(/**) covers ALL file-reading tools (Read, Glob,
+    # Grep) and Edit(/**) covers ALL file-editing tools (Edit, Write). Claude Code keys
+    # file-permission checks by CATEGORY, so listing Glob/Grep/Write separately is
+    # redundant and Claude Code warns "not matched — use Read(/**)/Edit(/**) instead".
+    # Read/Edit cover the whole workspace (not just _review): apply-review moves vetted
+    # notes from _review/ into the functional folders.
     # Safety still holds: plan mode + explicit plans gate every write, and the
     # rest of the vault (outside this folder) is untouched without a prompt.
     # DELETION note: rm/mv go through Bash, NOT Write/Edit, so this allow-list does
@@ -80,9 +84,6 @@ if (-not (Test-Path $settingsPath)) {
     "defaultMode": "plan",
     "allow": [
       "Read(/**)",
-      "Glob(/**)",
-      "Grep(/**)",
-      "Write(/**)",
       "Edit(/**)"
     ]
   }
