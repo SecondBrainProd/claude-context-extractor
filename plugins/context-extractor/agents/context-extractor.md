@@ -12,7 +12,7 @@ tools:
   - Grep
 skills:
   - transcript-router
-model: claude-opus-4-7
+model: claude-opus-5-5
 permissionMode: plan
 ---
 

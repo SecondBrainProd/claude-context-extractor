@@ -8,7 +8,7 @@ tools:
   - Read
   - Edit
   - Grep
-model: claude-sonnet-4-6
+model: claude-sonnet-5-5
 permissionMode: plan
 ---
 
